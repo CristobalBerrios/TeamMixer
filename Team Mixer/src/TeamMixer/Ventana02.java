@@ -115,6 +115,13 @@ public class Ventana02 extends JFrame {
 							}
 							setVisible(false);
 							venEliminacion.setVisible(true);
+							if(lista.getSize()==16){
+								for(int i=0;i<16;i++){
+									venEliminacion.setJugador(i,eliminacion.getJugador(i));
+								}
+								
+							}
+							
 						}
 						else{
 							JOptionPane.showMessageDialog(null,"La cantidad de jugadores para este torneo debe ser de 2,4,8,16");

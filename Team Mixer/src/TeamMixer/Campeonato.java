@@ -28,5 +28,9 @@ public class Campeonato {
 		}
 		return i;
 	}
+	
+	public 	String getJugador(int i){
+		return jugador[i].getNombre();
+	}
 
 }
