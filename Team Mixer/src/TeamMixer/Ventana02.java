@@ -61,6 +61,13 @@ public class Ventana02 extends JFrame {
 		
 		final JList listJugadores = new JList();
 		final DefaultListModel lista = new DefaultListModel();
+		
+		
+		final JLabel lblContJugadores = new JLabel(Integer.toString(lista.getSize()));
+		lblContJugadores.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblContJugadores.setBounds(374, 129, 63, 20);
+		contentPane.add(lblContJugadores);
+		
 		listJugadores.setFont(new Font("Consolas", Font.PLAIN, 20));
 		JScrollPane barra = new JScrollPane(listJugadores);
 		barra.setBounds(36, 130, 157, 323);
@@ -79,6 +86,7 @@ public class Ventana02 extends JFrame {
 					else{
 						lista.addElement(textNombre.getText());
 						listJugadores.setModel(lista);
+						lblContJugadores.setText(Integer.toString(lista.getSize()));
 					}
 				}
 				else{
@@ -115,11 +123,33 @@ public class Ventana02 extends JFrame {
 							}
 							setVisible(false);
 							venEliminacion.setVisible(true);
+							venEliminacion.mostrarBotones(lista.getSize());
+							//Ingreso lo jugadores a la tabla dependiendo de la cantidad de cuantos sean
 							if(lista.getSize()==16){
 								for(int i=0;i<16;i++){
 									venEliminacion.setJugador(i,eliminacion.getJugador(i));
 								}
-								
+							}
+							if(lista.getSize()==8){
+								int j=0;
+								for(int i=16;i<24;i++){
+									venEliminacion.setJugador(i,eliminacion.getJugador(j));
+									j++;
+								}
+							}
+							if(lista.getSize()==4){
+								int j=0;
+								for(int i=24;i<28;i++){
+									venEliminacion.setJugador(i,eliminacion.getJugador(j));
+									j++;
+								}
+							}
+							if(lista.getSize()==2){
+								int j =0;
+								for(int i=28;i<30;i++){
+									venEliminacion.setJugador(i,eliminacion.getJugador(j));
+									j++;
+								}
 							}
 							
 						}
@@ -138,6 +168,18 @@ public class Ventana02 extends JFrame {
 		button.setIcon(new ImageIcon("D:\\Respaldo\\TeamMixer\\Imagenes\\Imagen Continuarr.jpg"));
 		button.setBounds(642, 420, 114, 33);
 		contentPane.add(button);
+		
+		JButton btnEliminar = new JButton("");
+		btnEliminar.setIcon(new ImageIcon("D:\\Respaldo\\TeamMixer\\Imagenes\\ImagenEliminar.jpg"));
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lista.remove(listJugadores.getSelectedIndex());
+				lblContJugadores.setText(Integer.toString(lista.getSize()));
+				
+			}
+		});
+		btnEliminar.setBounds(203, 155, 89, 24);
+		contentPane.add(btnEliminar);
 		
 		
 		JLabel label = new JLabel("");
