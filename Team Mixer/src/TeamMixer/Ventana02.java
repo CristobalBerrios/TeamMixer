@@ -32,7 +32,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
 import java.awt.Window.Type;
+import java.io.IOException;
 
 public class Ventana02 extends JFrame {
 
@@ -105,14 +107,20 @@ public class Ventana02 extends JFrame {
 		contentPane.add(seleccionCampeonato);
 		
 		final VentanaLiga ventanaLiga = new VentanaLiga();
+		final Liga liga = new Liga(lista.getSize());
 		final EliminacionDirecta eliminacion = new EliminacionDirecta(lista.getSize());
 		final VentanaEliminacionDirecta venEliminacion = new VentanaEliminacionDirecta();
+		
 		
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(lista.getSize()%2==0){
 					if(seleccionCampeonato.getSelectedIndex()==0){
+						for(int i=0;i<lista.getSize();i++){
+							liga.agregarJugador(String.valueOf(lista.get(i)));
+						}
+						liga.generarDuelos();
 						setVisible(false);
 						ventanaLiga.setVisible(true);
 					}
