@@ -81,7 +81,7 @@ public class Ventana02 extends JFrame {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//compruebo que no agregue mas jugadores a la lista que superen la cantidad
-				if(lista.getSize()<64){
+				if(lista.getSize()<16){
 					if(textNombre.getText().equals("")){
 						JOptionPane.showMessageDialog(null,"Ingrese el nombre del Jugador por favor");
 					}
@@ -107,7 +107,7 @@ public class Ventana02 extends JFrame {
 		contentPane.add(seleccionCampeonato);
 		
 		final VentanaLiga ventanaLiga = new VentanaLiga();
-		final Liga liga = new Liga(lista.getSize());
+		
 		final EliminacionDirecta eliminacion = new EliminacionDirecta(lista.getSize());
 		final VentanaEliminacionDirecta venEliminacion = new VentanaEliminacionDirecta();
 		
@@ -117,10 +117,17 @@ public class Ventana02 extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(lista.getSize()%2==0){
 					if(seleccionCampeonato.getSelectedIndex()==0){
+						final Liga liga = new Liga(lista.getSize());
 						for(int i=0;i<lista.getSize();i++){
 							liga.agregarJugador(String.valueOf(lista.get(i)));
 						}
 						liga.generarDuelos();
+						ventanaLiga.agregarLiga(liga);
+						ventanaLiga.agregarComBoxResultado(lista.getSize());
+						ventanaLiga.agregarPosicion();
+						for(int i=0;i<lista.getSize()/2;i++){
+							ventanaLiga.agregarDuelo(i,liga.getPartido(i,0),liga.getPartido(i, 1));
+						}
 						setVisible(false);
 						ventanaLiga.setVisible(true);
 					}
@@ -135,27 +142,27 @@ public class Ventana02 extends JFrame {
 							//Ingreso lo jugadores a la tabla dependiendo de la cantidad de cuantos sean
 							if(lista.getSize()==16){
 								for(int i=0;i<16;i++){
-									venEliminacion.setJugador(i,eliminacion.getJugador(i));
+									venEliminacion.setJugador(i,eliminacion.getJugador(i).getNombre());
 								}
 							}
 							if(lista.getSize()==8){
 								int j=0;
 								for(int i=16;i<24;i++){
-									venEliminacion.setJugador(i,eliminacion.getJugador(j));
+									venEliminacion.setJugador(i,eliminacion.getJugador(j).getNombre());
 									j++;
 								}
 							}
 							if(lista.getSize()==4){
 								int j=0;
 								for(int i=24;i<28;i++){
-									venEliminacion.setJugador(i,eliminacion.getJugador(j));
+									venEliminacion.setJugador(i,eliminacion.getJugador(j).getNombre());
 									j++;
 								}
 							}
 							if(lista.getSize()==2){
 								int j =0;
 								for(int i=28;i<30;i++){
-									venEliminacion.setJugador(i,eliminacion.getJugador(j));
+									venEliminacion.setJugador(i,eliminacion.getJugador(j).getNombre());
 									j++;
 								}
 							}

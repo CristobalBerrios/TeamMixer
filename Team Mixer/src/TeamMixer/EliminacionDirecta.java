@@ -3,7 +3,7 @@ package TeamMixer;
 public class EliminacionDirecta extends Campeonato {
 	
 	private int numEquipos;
-	private String duelos[][]= new String[64/2][2];
+	private String duelos[][]= new String[8][2];
 	
 	public EliminacionDirecta(int numEquipos){
 		this.numEquipos=numEquipos;

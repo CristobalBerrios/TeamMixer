@@ -1,8 +1,8 @@
 package TeamMixer;
 
 public class Campeonato {
-	protected Jugador jugador[] = new Jugador[64];
-	protected int cont;
+	protected Jugador jugador[] = new Jugador[16];
+	private int cont;
 	
 	public Campeonato(){
 		cont=0;
@@ -11,12 +11,9 @@ public class Campeonato {
 	public void agregarJugador(String nombre){
 		if(cont<64){
 			jugador[cont]=new Jugador(nombre);
+			jugador[cont].setPtj(0);
 		}
 		cont++;
-	}
-	
-	public int getCont(){
-		return cont;
 	}
 	
 	public int cantidadJugadores(){
@@ -29,8 +26,10 @@ public class Campeonato {
 		return i;
 	}
 	
-	public 	String getJugador(int i){
-		return jugador[i].getNombre();
+	public 	Jugador getJugador(int i){
+		return jugador[i];
 	}
+	
+	
 
 }
