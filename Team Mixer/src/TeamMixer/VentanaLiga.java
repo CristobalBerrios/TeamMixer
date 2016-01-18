@@ -58,6 +58,31 @@ public class VentanaLiga extends JFrame {
 		tabbedPane.addTab("Principal", null, panel, null);
 		panel.setLayout(null);
 		
+		final JButton btnFinalizar = new JButton("");
+		btnFinalizar.setIcon(new ImageIcon("D:\\Respaldo\\TeamMixer\\Imagenes\\Boton finalizar campeonato2.jpg"));
+		btnFinalizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VentanaPrincipal principal = new VentanaPrincipal();
+				principal.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnFinalizar.setBounds(327, 313, 152, 37);
+		panel.add(btnFinalizar);
+		
+		final JButton btnContinuar = new JButton("");
+		btnContinuar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VentanaPrincipal principal = new VentanaPrincipal();
+				principal.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnContinuar.setIcon(new ImageIcon("D:\\Respaldo\\TeamMixer\\Imagenes\\Imagen Continuarr.jpg"));
+		btnContinuar.setBounds(606, 405, 114, 33);
+		btnContinuar.setVisible(false);
+		panel.add(btnContinuar);
+		
 		final JLabel lblPrincipal = new JLabel("");
 		lblPrincipal.setIcon(new ImageIcon("D:\\Respaldo\\TeamMixer\\Imagenes\\campeonato en juego.jpg"));
 		lblPrincipal.setBounds(0, 0, 779, 466);
@@ -178,7 +203,10 @@ public class VentanaLiga extends JFrame {
 							lblNomCampeon.setText(getPrimerLugar());
 							lblNomCampeon.setVisible(true);
 							lblCampeon.setVisible(true);
+							btnFinalizar.setVisible(false);
+							btnContinuar.setVisible(true);
 							tabbedPane.setSelectedIndex(0);
+							
 							
 						}
 					}

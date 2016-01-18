@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -47,6 +48,7 @@ public class VentanaEliminacionDirecta extends JFrame {
     private JButton btn29 = new JButton("");
     private JButton btn30 = new JButton("");
 	private JLabel lblGanador = new JLabel("");
+	private JButton button;
 	
 	public VentanaEliminacionDirecta() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,6 +95,18 @@ public class VentanaEliminacionDirecta extends JFrame {
 		jugador[27].setBounds(501, 393, 85, 26);
 		jugador[28].setBounds(274, 261, 85, 26);
 		jugador[29].setBounds(445, 258, 85, 26);
+		
+		button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VentanaPrincipal principal = new VentanaPrincipal();
+				principal.setVisible(true);
+				setVisible(false);
+			}
+		});
+		button.setIcon(new ImageIcon("D:\\Respaldo\\TeamMixer\\Imagenes\\Boton finalizar campeonato2.jpg"));
+		button.setBounds(333, 460, 152, 37);
+		contentPane.add(button);
 		
 		
 		

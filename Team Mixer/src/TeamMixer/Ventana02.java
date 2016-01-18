@@ -43,7 +43,7 @@ public class Ventana02 extends JFrame {
 
 	public Ventana02() {
 		setFont(new Font("Courier New", Font.PLAIN, 14));
-		setTitle("Team Mixer");
+		setTitle("TeamMixer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 533);
 		contentPane = new JPanel();
@@ -110,16 +110,24 @@ public class Ventana02 extends JFrame {
 		
 		final EliminacionDirecta eliminacion = new EliminacionDirecta(lista.getSize());
 		final VentanaEliminacionDirecta venEliminacion = new VentanaEliminacionDirecta();
+		final JugadoresSave recientes = new JugadoresSave();
+		recientes.ingresarJugadoresSaves();
 		
 		
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(lista.getSize()%2==0){
+					
 					if(seleccionCampeonato.getSelectedIndex()==0){
 						final Liga liga = new Liga(lista.getSize());
+						recientes.borrarJugadoresSave();
 						for(int i=0;i<lista.getSize();i++){
 							liga.agregarJugador(String.valueOf(lista.get(i)));
+							if(i<10){
+								recientes.saveJugador(String.valueOf(lista.get(i)));
+							}
+							
 						}
 						liga.generarDuelos();
 						ventanaLiga.agregarLiga(liga);
@@ -133,8 +141,12 @@ public class Ventana02 extends JFrame {
 					}
 					if(seleccionCampeonato.getSelectedIndex()==1){
 						if(lista.getSize()==2 || lista.getSize()==4 || lista.getSize()==8 || lista.getSize()==16){
+							recientes.borrarJugadoresSave();
 							for(int i=0;i<lista.getSize();i++){
 								eliminacion.agregarJugador(String.valueOf(lista.get(i))); 
+								if(i<10){
+									recientes.saveJugador(String.valueOf(lista.get(i)));
+								}
 							}
 							setVisible(false);
 							venEliminacion.setVisible(true);
@@ -193,8 +205,36 @@ public class Ventana02 extends JFrame {
 				
 			}
 		});
-		btnEliminar.setBounds(203, 155, 89, 24);
+		btnEliminar.setBounds(207, 198, 89, 24);
 		contentPane.add(btnEliminar);
+		
+		
+		
+		final JComboBox jugadoresRecientes = new JComboBox();
+		jugadoresRecientes.setBounds(419, 160, 157, 23);
+		contentPane.add(jugadoresRecientes);
+		
+		for(int i=0;i<10;i++){
+			if(recientes.getJugadorSave(i)!= null){
+				jugadoresRecientes.addItem(recientes.getJugadorSave(i));
+			}
+			else{
+				break;
+			}
+		}
+		
+		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String jugador=recientes.getJugadorSave(jugadoresRecientes.getSelectedIndex());
+				lista.addElement(jugador);
+				listJugadores.setModel(lista);
+				
+			}
+		});
+		button_1.setIcon(new ImageIcon("D:\\Respaldo\\TeamMixer\\Imagenes\\Imagen Agregar.jpg"));
+		button_1.setBounds(596, 160, 89, 23);
+		contentPane.add(button_1);
 		
 		
 		JLabel label = new JLabel("");

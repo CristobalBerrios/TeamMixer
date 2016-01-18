@@ -17,6 +17,7 @@ public class VentanaPrincipal extends JFrame {
 	private JPanel contentPane;
 
 	public VentanaPrincipal() {
+		setTitle("TeamMixer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 533);
 		contentPane = new JPanel();
